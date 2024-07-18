@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en" x-data="newsApp()">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="style.css" />
+    <!-- Integrated alpineJS -->
+    <script
+      defer
+      src="https://cdn.jsdelivr.net/npm/alpinejs@3.x.x/dist/cdn.min.js"
+    ></script>
+    <title>News Website</title>
+  </head>
+  <body x-init="fetchNews('World')">
+    <!-- the loader, before data gets fetched -->
+    <div class="loader" x-show="loading"></div>
+    <!-- Navbar-starts -->
+    <nav x-data="{ open: false }">
+      <div class="nav-bar-logo container">
+        <img class="logo" src="news logo.png" alt="logo" />
+      </div>
+      <div class="nav-bar">
+        <ul :class="{ 'show': open }">
+          <li><a href="#" @click.prevent="fetchNews('sports')">Sports</a></li>
+          <li>
+            <a href="#" @click.prevent="fetchNews('politics')">Politics</a>
+          </li>
+          <li>
+            <a href="#" @click.prevent="fetchNews('technology')">Technology</a>
+          </li>
+          <li><a href="#" @click.prevent="fetchNews('defence')">Defence</a></li>
+        </ul>
+      </div>
+      <div class="search-container">
+        <input
+          class="search-bar"
+          type="text"
+          placeholder="eg. Science"
+          x-model="query"
+        />
+        <button class="search-btn" @click="searchNews">Search</button>
+      </div>
+      <div class="hamburger" @click="open = !open">
+        <span></span>
+        <span></span>
+        <span></span>
+      </div>
+    </nav>
+
+    <!-- Navbar-ends -->
+    <main>
+      <div class="card-container" id="cards-container">
+        <template x-for="article in articles" :key="article.url">
+          <div class="card" @click="openArticle(article.url)">
+            <div class="card-header">
+              <img :src="article.urlToImage" alt="" class="news-img" />
+            </div>
+            <div class="card-content">
+              <h3 class="news-title" x-text="article.title"></h3>
+              <h5
+                class="news-source"
+                x-text="`${article.source.name} ${new Date(article.publishedAt).toLocaleString('en-US', { timeZone: 'Asia/Jakarta' })}`"
+              ></h5>
+              <p class="news-description" x-text="article.description"></p>
+            </div>
+          </div>
+        </template>
+      </div>
+    </main>
+
+    <!-- js file -->
+    <script src="script.js"></script>
+  </body>
+</html>
