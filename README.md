@@ -13,4 +13,13 @@ This news application is developed using HTML , CSS , JS and AlpineJS.
 # How to run the web application ?
 Simply , you have to git clone and then open with the live server.
 
+# Images
+Desktop version : 
+![image](https://github.com/user-attachments/assets/316a511e-059d-44d0-8aae-31ded2ac9169)
+
+Mobile version :
+![image](https://github.com/user-attachments/assets/ba0e1ce3-172e-4f3e-b29d-99be02074a37)
+
+
+
 
